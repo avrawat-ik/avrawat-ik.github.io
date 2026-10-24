@@ -373,6 +373,26 @@
   }
 
   .outline a.done .n::after { content: ' ✓'; color: var(--good); }
+
+  /* Part 1 additions */
+  .roadmap-mini { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 14px 0 6px; }
+  .roadmap-mini a { display: flex; gap: 10px; align-items: center; text-decoration: none; color: var(--ink); border: 1px solid var(--hair); border-radius: 10px; padding: 10px 12px; background: var(--card); font-size: 14.5px; font-weight: 600; }
+  .roadmap-mini a:hover { border-color: var(--blue); background: var(--blue-soft); }
+  .roadmap-mini span { font: 700 12px ui-monospace, Menlo, monospace; color: #b45309; }
+  .choice .how { font-size: 14px; color: var(--ink-soft); border-top: 1px solid var(--hair); padding-top: 8px; margin-top: 8px; }
+  .vsmap { display: grid; grid-template-columns: 56px 200px 1fr 220px; grid-template-rows: 1fr auto; border: 1px solid var(--hair); border-radius: 12px; overflow: hidden; margin: 8px 0 14px; font-size: 13.5px; min-height: 230px; background: var(--card); }
+  .vsmap b { display: block; color: var(--navy); font-size: 14px; }
+  .vs-bar { grid-row: 1 / 2; background: var(--navy); color: var(--bg); display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 12px 0; }
+  .vs-bar span { font-size: 18px; line-height: 1; position: relative; cursor: default; }
+  .vs-bar span em { display: block; font-style: normal; font-size: 9.5px; margin-top: 3px; text-align: center; opacity: .85; }
+  .vs-bar .spacer { flex: 1; }
+  .vs-side { padding: 12px; background: var(--panel); border-right: 1px solid var(--hair); }
+  .vs-main { display: grid; grid-template-rows: 1fr auto; }
+  .vs-editor { padding: 12px; }
+  .vs-terminal { padding: 10px 12px; border-top: 1px solid var(--hair); background: var(--code-bg); font-size: 13px; }
+  .vs-chat { padding: 12px; border-left: 1px solid var(--hair); background: var(--blue-soft); }
+  .vs-status { grid-column: 1 / -1; background: #2A7AB0; color: #fff; font-size: 12px; padding: 4px 12px; }
+  @media (max-width: 860px) { .roadmap-mini { grid-template-columns: 1fr 1fr; } .vsmap { grid-template-columns: 48px 1fr; } .vs-main { grid-column: 2; } .vs-side { display: none; } .vs-chat { grid-column: 2; border-left: 0; border-top: 1px solid var(--hair); } .vs-bar { grid-row: 1 / 3; } }
 </style>
 </head>
 <body>
@@ -390,7 +410,7 @@
     </div>
     <div class="stat">
       <div class="big">Start with <span>Part 1</span></div>
-      <p>Get a working coding assistant first. Once it can see your files and run commands, it can do almost every other step for you, including fixing errors.</p>
+      <p>Install VS Code, sign in with GitHub and get a working coding assistant first. Once it can see your files and run commands, it can do almost every other step for you, including fixing errors.</p>
       <a href="#p1">Go to Part 1 ↓</a>
     </div>
   </div>
@@ -399,7 +419,7 @@
 <nav class="mobile-nav" aria-label="Parts">
   <div>
     <a href="#p0">0 · Start</a>
-    <a href="#p1">1 · Assistant</a>
+    <a href="#p1">1 · Setup</a>
     <a href="#p2">2 · When stuck</a>
     <a href="#p3">3 · Run it</a>
     <a href="#p4">4 · Make it yours</a>
@@ -420,7 +440,7 @@
     <p class="muted" id="prog-text" style="margin:6px 0 14px 12px;font-size:13px">0 of 11 parts checked</p>
     <ol>
       <li><a href="#p0"><span class="n">0</span>Before you start</a></li>
-      <li><a href="#p1" class="key"><span class="n">1</span>Get a working coding assistant</a></li>
+      <li><a href="#p1" class="key"><span class="n">1</span>Set up VS Code, GitHub and your assistant</a></li>
       <li><a href="#p2"><span class="n">2</span>When things break</a></li>
       <li><a href="#p3"><span class="n">3</span>Get the project running</a></li>
       <li><a href="#p4"><span class="n">4</span>Make it yours</a></li>
@@ -476,13 +496,106 @@
 
     <!-- 1 -->
     <section class="block key-part" id="p1">
-      <span class="num">Part 1 · 30 to 45 minutes · The most important step</span>
-      <h2>Get a working coding assistant</h2>
-      <p class="intro">A coding assistant is an AI that lives inside VS Code. It reads your project, edits files and runs commands, with your permission. Get this working first; everything after it gets much easier.</p>
+      <span class="num">Part 1 · 45 to 60 minutes · The most important step</span>
+      <h2>Set up VS Code, GitHub and your coding assistant</h2>
+      <p class="intro">One app, two accounts and an assistant, set up from scratch. No experience assumed: if you've never opened VS Code or GitHub, start at 1A. Already have something? Skip that step, but do the three tests at the end.</p>
 
       <div class="note warn"><b class="t">Why this step matters most</b><p>Common problems start here: an assistant on a free plan that runs out partway, a chat mode that can't touch files, or the browser chat instead of the editor. Once your assistant passes the three tests at the end of this part, it can install tools, download the project, run it and fix most errors for you.</p></div>
 
-      <h3>1A · Choose one, on a paid plan</h3>
+      <div class="roadmap-mini">
+        <a href="#s1a"><span>1A</span>Install VS Code</a>
+        <a href="#s1b"><span>1B</span>Find your way around</a>
+        <a href="#s1c"><span>1C</span>Create a GitHub account</a>
+        <a href="#s1d"><span>1D</span>Sign in to GitHub in VS Code</a>
+        <a href="#s1e"><span>1E</span>Choose a paid assistant</a>
+        <a href="#s1f"><span>1F</span>Install it and sign in</a>
+        <a href="#s1g"><span>1G</span>Open a folder</a>
+        <a href="#s1h"><span>1H</span>Three tests</a>
+      </div>
+
+      <h3 id="s1a">1A · Install VS Code</h3>
+      <p>VS Code is a free app from Microsoft for working on code. You'll build your whole site inside it.</p>
+      <div class="tabs os-tabs" role="tablist" aria-label="Your computer">
+        <button role="tab" aria-selected="true" data-os="mac">Mac</button>
+        <button role="tab" aria-selected="false" data-os="win">Windows</button>
+      </div>
+      <div class="tabpanel" data-ospanel="mac">
+        <ol class="steps">
+          <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a> and click the <b>Mac</b> download.</li>
+          <li>Open your <b>Downloads</b> folder and double-click the file you just downloaded.</li>
+          <li>Drag <b>Visual Studio Code</b> into your <b>Applications</b> folder.</li>
+          <li>Open it from Applications (or press <kbd>Cmd+Space</kbd>, type <i>Visual Studio Code</i> and press Enter). If your Mac warns that it was downloaded from the internet, click <b>Open</b>.</li>
+          <li>Optional: to keep it in the Dock, Control-click its icon in the Dock and choose <b>Options → Keep in Dock</b>.</li>
+          <li>Recommended: press <kbd>Cmd+Shift+P</kbd>, type <i>shell command</i>, and choose <b>Shell Command: Install 'code' command in PATH</b> (it may also mention Copilot; choose <b>No</b> to that part). This lets the terminal open folders in VS Code.</li>
+        </ol>
+        <p class="muted">Guide: <a href="https://code.visualstudio.com/docs/setup/mac" target="_blank" rel="noopener">VS Code on macOS</a></p>
+      </div>
+      <div class="tabpanel" data-ospanel="win" hidden>
+        <ol class="steps">
+          <li>Go to <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com/download</a> and click the <b>Windows</b> download (the <b>User Installer</b> is the right one; it doesn't need administrator rights).</li>
+          <li>Open your <b>Downloads</b> folder and double-click the installer (<code>VSCodeUserSetup…exe</code>).</li>
+          <li>Accept the agreement and keep the default options. The installer adds VS Code to your PATH, so the terminal can open it. If it offers <b>Add "Open with Code" action</b>, tick it.</li>
+          <li>If it asks about GitHub Copilot CLI, choose not to add it; you don't need it for this guide.</li>
+          <li>Click <b>Finish</b> with <b>Launch Visual Studio Code</b> ticked.</li>
+        </ol>
+        <p class="muted">Guide: <a href="https://code.visualstudio.com/docs/setup/windows" target="_blank" rel="noopener">VS Code on Windows</a></p>
+      </div>
+      <p style="margin-top:12px">VS Code opens on a <b>Welcome</b> page. You can close it.</p>
+
+      <h3 id="s1b">1B · Find your way around (two minutes)</h3>
+      <div class="vsmap">
+        <div class="vs-bar">
+          <span title="Explorer">📄<em>Explorer</em></span>
+          <span title="Search">🔍<em>Search</em></span>
+          <span title="Source Control">⑂<em>Source Control</em></span>
+          <span title="Extensions">⧉<em>Extensions</em></span>
+          <span class="spacer"></span>
+          <span title="Accounts">👤<em>Accounts</em></span>
+          <span title="Manage">⚙<em>Settings</em></span>
+        </div>
+        <div class="vs-side"><b>Side bar</b>Your project's files (Explorer), or whatever the icon on the left opens</div>
+        <div class="vs-main">
+          <div class="vs-editor"><b>Editor</b>Files open here as tabs</div>
+          <div class="vs-terminal"><b>Terminal</b>Commands run here. Open it from the menu: Terminal, then New Terminal.</div>
+        </div>
+        <div class="vs-chat"><b>Assistant chat</b>Your coding assistant's panel, usually on the right</div>
+        <div class="vs-status">Status bar: shows Copilot and Claude Code icons, and your branch</div>
+      </div>
+      <div class="table-wrap"><table>
+        <tr><th>You need to…</th><th>Do this</th></tr>
+        <tr><td>Open a folder</td><td><b>File → Open Folder</b></td></tr>
+        <tr><td>See your files</td><td>Click <b>Explorer</b>, the top icon on the left bar</td></tr>
+        <tr><td>Open the terminal</td><td><b>Terminal → New Terminal</b> (or <kbd>Ctrl+`</kbd>)</td></tr>
+        <tr><td>Install an extension</td><td>Click <b>Extensions</b> on the left bar, or <kbd>Cmd+Shift+X</kbd> / <kbd>Ctrl+Shift+X</kbd></td></tr>
+        <tr><td>Run any VS Code command</td><td>The <b>Command Palette</b>: <kbd>Cmd+Shift+P</kbd> / <kbd>Ctrl+Shift+P</kbd>, then type what you want</td></tr>
+        <tr><td>Sign in or out</td><td>Click <b>Accounts</b>, the person icon at the bottom of the left bar</td></tr>
+        <tr><td>Fix a stuck window</td><td>Command Palette → <b>Developer: Reload Window</b></td></tr>
+      </table></div>
+
+      <h3 id="s1c">1C · Create a GitHub account</h3>
+      <p>GitHub stores your code online and hosts your published site. It's free.</p>
+      <ol class="steps">
+        <li>Go to <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a>. Enter your email, a password and a <b>username</b>, or choose <b>Continue with Google</b>.</li>
+        <li>Pick your username with care: it appears in your links, for example <code>your-username.github.io</code>. Your name, like <code>jane-doe</code>, works well.</li>
+        <li>Complete the verification puzzle, then enter the code GitHub emails you.</li>
+        <li>If GitHub asks about plans or what you'll use it for, the <b>Free</b> plan is all you need. You can skip the questions.</li>
+        <li><b>Verify your email address</b> if GitHub asks. Without it you can't create a repository later.</li>
+        <li>Recommended: turn on two-factor authentication in <b>Settings → Password and authentication</b>.</li>
+      </ol>
+      <p class="muted">Guide: <a href="https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github" target="_blank" rel="noopener">Creating an account on GitHub</a></p>
+
+      <h3 id="s1d">1D · Sign in to GitHub inside VS Code</h3>
+      <p>This connects VS Code to your GitHub account, so it can save your code there later and so Copilot can work.</p>
+      <ol class="steps">
+        <li>In VS Code, click the <b>Accounts</b> icon (the person at the bottom of the left bar).</li>
+        <li>Choose <b>Sign in with GitHub</b>. It may read <i>Sign in with GitHub to use GitHub Copilot</i>; that's the same thing.</li>
+        <li>Your browser opens GitHub. Sign in if asked, then click <b>Continue</b> or <b>Authorize Visual Studio Code</b>.</li>
+        <li>The browser asks to open VS Code. Click <b>Open Visual Studio Code</b> (tick "always allow" if offered).</li>
+        <li>Back in VS Code, click <b>Accounts</b> again. Your GitHub username now shows there.</li>
+      </ol>
+      <div class="note blue"><b class="t">Later, when your code goes to GitHub</b><p>VS Code may pop up <i>"The extension 'GitHub' wants to sign in using GitHub"</i> or open your browser to approve. That's expected: click <b>Allow</b> and approve.</p></div>
+
+      <h3 id="s1e">1E · Choose your coding assistant, on a paid plan</h3>
       <p>Pick <b>one</b>. Free plans have small limits, and a build like this can run out partway, at which point the assistant stops. A paid plan avoids that.</p>
       <div class="cols3">
         <div class="choice">
@@ -490,44 +603,35 @@
           <h4>OpenAI Codex</h4>
           <p class="price">ChatGPT Plus · $20 a month</p>
           <p>Codex comes with every ChatGPT plan, but Free and Go are for quick, lightweight tasks. Plus is the first plan meant for focused coding sessions.</p>
-          <a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">Plans</a>
+          <p class="how"><b>To subscribe:</b> sign in at <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a>, choose <b>Upgrade plan</b>, then <b>Plus</b>. <a href="https://learn.chatgpt.com/docs/pricing" target="_blank" rel="noopener">Plans</a></p>
         </div>
         <div class="choice">
           <span class="tag">Already pay for Claude?</span>
           <h4>Claude Code</h4>
           <p class="price">Claude Pro · $20 a month ($17 billed yearly)</p>
           <p>Claude Code is included in Pro and higher. It isn't included in the free Claude plan.</p>
-          <a href="https://claude.com/pricing" target="_blank" rel="noopener">Plans</a>
+          <p class="how"><b>To subscribe:</b> sign in at <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a>, choose <b>Upgrade</b>, then <b>Pro</b>. <a href="https://claude.com/pricing" target="_blank" rel="noopener">Plans</a></p>
         </div>
         <div class="choice rec">
           <span class="tag">Neither? Start here</span>
           <h4>GitHub Copilot</h4>
           <p class="price">Copilot Pro · $10 a month</p>
-          <p>Built into VS Code and uses the GitHub account you need anyway. Copilot Free has limited chat and agent use.</p>
-          <a href="https://github.com/features/copilot/plans" target="_blank" rel="noopener">Plans</a>
+          <p>Built into VS Code and uses the GitHub account you just made. Copilot Free has limited chat and agent use.</p>
+          <p class="how"><b>To subscribe:</b> open <a href="https://github.com/features/copilot/plans" target="_blank" rel="noopener">Copilot plans</a>, signed in with the same GitHub account as VS Code, and choose <b>Get started</b> under <b>Pro</b>.</p>
         </div>
       </div>
-      <p class="muted">Prices from each provider's pricing page, checked 24 Oct 2026. They change; check before you pay. If you already use Cursor or Windsurf, that works too: open the project folder there instead of VS Code.</p>
+      <p class="muted">Prices from each provider's pricing page, checked 24 Oct 2026. They change; check before you pay. Button names on these sites can change too: look for "Upgrade". Already use Cursor or Windsurf? That works too: open the project folder there instead of VS Code.</p>
 
-      <h3>1B · Install VS Code and open a folder</h3>
-      <ol class="steps">
-        <li>Download and install <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VS Code</a>, then open it.</li>
-        <li>Create a free account at <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> and verify your email. You'll need it to publish your site, and Copilot signs in with it.</li>
-        <li>In VS Code, click the <b>Accounts</b> icon (bottom left) → <b>Sign in with GitHub</b>, and finish the sign-in in your browser.</li>
-        <li>Make a folder for your projects, for example <code>Documents/Projects</code>. In VS Code choose <b>File → Open Folder</b> and pick it. Your assistant can only work inside the folder that's open.</li>
-        <li>If VS Code asks whether you trust the authors of the folder, choose <b>Yes</b>. In restricted mode the assistant can't act.</li>
-      </ol>
-
-      <h3>1C · Install your assistant and sign in</h3>
-      <div class="tabs" role="tablist" aria-label="Choose your assistant">
+      <h3 id="s1f">1F · Install your assistant and sign in</h3>
+      <div class="tabs as-tabs" role="tablist" aria-label="Choose your assistant">
         <button role="tab" aria-selected="true" data-tab="copilot">GitHub Copilot</button>
         <button role="tab" aria-selected="false" data-tab="claude">Claude Code</button>
         <button role="tab" aria-selected="false" data-tab="codex">OpenAI Codex</button>
       </div>
       <div class="tabpanel" data-panel="copilot">
         <ol class="steps">
-          <li>Copilot is built into VS Code. Hover over the <b>Copilot icon</b> in the Status Bar at the bottom of the window and choose <b>Use AI Features</b>.</li>
-          <li>Sign in with your GitHub account. If you've bought Copilot Pro, VS Code uses it; otherwise you're put on Copilot Free.</li>
+          <li>Copilot is built into VS Code. Hover over the <b>Copilot icon</b> in the Status Bar at the bottom of the window and choose <b>Use AI Features</b>. If you already signed in during 1D, it may be ready.</li>
+          <li>Sign in with the same GitHub account. If you've bought Copilot Pro, VS Code uses it; otherwise you're put on Copilot Free. Bought Pro but it still says Free? Command Palette → <b>Developer: Reload Window</b>.</li>
           <li>Open the chat: <kbd>Ctrl+Alt+I</kbd> (Windows) or <kbd>Ctrl+Cmd+I</kbd> (Mac).</li>
           <li><b>Set the chat to Agent</b> using the mode picker in the chat box. In Ask mode it can only talk; in Agent mode it can edit files and run commands.</li>
         </ol>
@@ -535,27 +639,34 @@
       </div>
       <div class="tabpanel" data-panel="claude" hidden>
         <ol class="steps">
-          <li>Open <b>Extensions</b>: <kbd>Ctrl+Shift+X</kbd> (Windows) or <kbd>Cmd+Shift+X</kbd> (Mac). Search <b>Claude Code</b> and install the one published by <b>Anthropic</b>.</li>
-          <li>Open it: click the <b>Spark icon</b> in the left sidebar, or <b>✻ Claude Code</b> in the bottom-right of the window.</li>
-          <li>Click <b>Sign in</b> and approve in your browser, using your Claude Pro (or higher) account.</li>
+          <li>Click <b>Extensions</b> on the left bar (<kbd>Cmd+Shift+X</kbd> / <kbd>Ctrl+Shift+X</kbd>). Search <b>Claude Code</b> and click <b>Install</b> on the one published by <b>Anthropic</b>.</li>
+          <li>Open it: click the <b>Spark icon</b> on the left bar, or <b>✻ Claude Code</b> at the bottom right of the window.</li>
+          <li>Click <b>Sign in</b> and approve in your browser, using your Claude Pro (or higher) account. No API key is needed for this.</li>
           <li><b>Check the permission mode</b> shown at the bottom of the prompt box. <b>Manual</b> asks before every edit and command, which is good while you learn. <b>Plan</b> only describes changes without making them, so don't use it for building.</li>
         </ol>
         <p class="muted">Guide: <a href="https://code.claude.com/docs/en/vs-code" target="_blank" rel="noopener">Claude Code for VS Code</a></p>
       </div>
       <div class="tabpanel" data-panel="codex" hidden>
         <ol class="steps">
-          <li>Open <b>Extensions</b>: <kbd>Ctrl+Shift+X</kbd> (Windows) or <kbd>Cmd+Shift+X</kbd> (Mac). Search <b>Codex</b> and install the one published by <b>OpenAI</b>.</li>
-          <li>Click the <b>Codex icon</b> in the sidebar. Not there? Open the Command Palette (<kbd>Ctrl+Shift+P</kbd> / <kbd>Cmd+Shift+P</kbd>) and run <b>Codex: Open Codex Sidebar</b>.</li>
+          <li>Click <b>Extensions</b> on the left bar (<kbd>Cmd+Shift+X</kbd> / <kbd>Ctrl+Shift+X</kbd>). Search <b>Codex</b> and click <b>Install</b> on the one published by <b>OpenAI</b>.</li>
+          <li>Click the <b>Codex icon</b> on the left bar. Not there? Command Palette → <b>Codex: Open Codex Sidebar</b>.</li>
           <li>Choose <b>Sign in with ChatGPT</b> and approve in your browser, using your ChatGPT Plus (or higher) account.</li>
           <li><b>Pick the mode that can act.</b> If the chat offers a Chat mode and an Agent mode, choose Agent, so it can edit files and run commands.</li>
         </ol>
         <p class="muted">Guide: <a href="https://learn.chatgpt.com/docs/codex/ide" target="_blank" rel="noopener">Codex IDE extension</a></p>
       </div>
 
-      <h3>1D · Permissions: read, then allow</h3>
+      <h3 id="s1g">1G · Open a projects folder</h3>
+      <ol class="steps">
+        <li>Make a folder for your projects, for example <code>Documents/Projects</code> (in Finder on a Mac, File Explorer on Windows).</li>
+        <li>In VS Code choose <b>File → Open Folder</b> and pick it. Your assistant can only work inside the folder that's open.</li>
+        <li>If VS Code asks <i>"Do you trust the authors of the files in this folder?"</i>, choose <b>Yes, I trust the authors</b>. In restricted mode the assistant can't act.</li>
+      </ol>
+
+      <h3>Permissions: read, then allow</h3>
       <p>Your assistant asks before it edits a file or runs a command. Read what it wants to do, then allow it. Until your project runs (Part 3), approve one action at a time. Never approve something that deletes files unless you've read it and understand why.</p>
 
-      <h3>1E · Three tests. Do all three.</h3>
+      <h3 id="s1h">1H · Three tests. Do all three.</h3>
       <p>Each test proves a different ability. If one fails, fix it before moving on: the rest of the guide depends on all three.</p>
       <div class="tests">
         <div class="test">
@@ -581,6 +692,7 @@
           <ul>
             <li><b>Using chatgpt.com or claude.ai in the browser</b> instead of the assistant inside VS Code. The browser chat can't see or change your files, so every step turns into copying and pasting.</li>
             <li><b>Copilot left in Ask mode.</b> It answers questions but can't edit or run anything. Switch to Agent.</li>
+            <li><b>Two different GitHub accounts.</b> Copilot Pro bought on one account while VS Code is signed in with another. Check the username under Accounts.</li>
             <li><b>A free plan that runs out halfway.</b> Upgrade before you start Part 3.</li>
             <li><b>The wrong folder open.</b> From Part 3 on, the folder must be <code>my-portfolio</code>, the one that contains <code>package.json</code>.</li>
             <li><b>Pasting only the last line of an error.</b> Paste all of it (see Part 2).</li>
@@ -590,8 +702,8 @@
         </div>
       </details>
 
-      <div class="check"><b>✓ Check before you move on</b>All three tests pass, and your plan is a paid one.</div>
-      <label class="done-check"><input type="checkbox" data-part="1"> Part 1 done: all three tests pass</label>
+      <div class="check"><b>✓ Check before you move on</b>VS Code is installed. Accounts shows your GitHub username. Your assistant is on a paid plan, and all three tests pass.</div>
+      <label class="done-check"><input type="checkbox" data-part="1"> Part 1 done: VS Code, GitHub and my assistant all work</label>
     </section>
 
     <!-- 2 -->
@@ -647,7 +759,10 @@ Explain the cause in one plain sentence, fix the cause (not the symptom), run th
       <div class="prompt"><pre>I'm setting up my laptop for a class. Please do this step by step:
 1. Check whether Git is installed. If it isn't, install it for me
    if you can; otherwise tell me exactly how, and wait until I confirm.
-2. Clone https://github.com/nahidfar/claude-master-class.git
+2. Check that Git knows my name and email (git config --global
+   user.name and user.email). If either is missing, ask me for
+   them and set them.
+3. Clone https://github.com/nahidfar/claude-master-class.git
    into a new folder called my-portfolio here.
 Stop when the clone is done and tell me the full path of my-portfolio.</pre></div>
       <p style="margin-top:12px">Then open the new folder: <b>File → Open Folder → my-portfolio</b>. You should see <code>package.json</code> in the Explorer on the left. <b>From now on, always open this folder.</b></p>
@@ -682,8 +797,11 @@ what passed and anything I still need to do.</pre></div>
             <li><b>Git</b> downloads ("clones") the project. <b>Node.js</b> runs it; <b>npm</b> comes with Node and installs the building blocks the project needs.</li>
             <li><code>npm ci</code> installs the exact versions listed in <code>package-lock.json</code>. It does not install npm itself.</li>
           </ul>
+          <p><b>Installing Git:</b> on a Mac, the first time anything uses Git, macOS may offer to install the "command line developer tools". Click <b>Install</b> and wait for it to finish. On Windows, the Git installer's default options are fine.</p>
           <p>By hand: install <a href="https://git-scm.com/downloads">Git</a> and <a href="https://nodejs.org/en/download">Node.js LTS</a> (22.18 or newer), reopen VS Code, open <b>Terminal → New Terminal</b>, and run each line:</p>
-          <pre class="plain">git clone --branch main https://github.com/nahidfar/claude-master-class.git my-portfolio
+          <pre class="plain">git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git clone --branch main https://github.com/nahidfar/claude-master-class.git my-portfolio
 cd my-portfolio
 node --version
 npm ci
@@ -870,7 +988,9 @@ Add focused tests; run npm run preflight; report results and gaps.</pre></div>
 
       <h3>Step 1 · Push to your own repository</h3>
       <ol class="steps">
-        <li>On github.com, click <b>+ → New repository</b>. Give it a name, leave it <b>empty</b> (no README) and create it. Copy its address, for example <code>https://github.com/your-name/my-portfolio.git</code>.</li>
+        <li>Sign in at <a href="https://github.com" target="_blank" rel="noopener">github.com</a>. Click <b>+</b> at the top right, then <b>New repository</b>.</li>
+        <li>Name it, for example <code>my-portfolio</code>. Choose <b>Public</b> if you might use GitHub Pages (free Pages needs a public repository); <b>Private</b> is fine for Vercel. Leave every "Add…" option off, so the repository is <b>empty</b> (no README), and click <b>Create repository</b>.</li>
+        <li>Copy the address GitHub shows, for example <code>https://github.com/your-name/my-portfolio.git</code>.</li>
         <li>Paste this into your assistant, with your address:</li>
       </ol>
       <div class="prompt"><pre>Publish my project to my own GitHub repository: [YOUR REPOSITORY URL].
@@ -878,6 +998,7 @@ Add focused tests; run npm run preflight; report results and gaps.</pre></div>
 2. Add my repository as "origin".
 3. Check that .env.local, PDFs, private-inputs and build output are not staged. Show me what will be committed and wait for my OK.
 4. Commit and push main to origin. Don't force-push.</pre></div>
+      <div class="note blue"><b class="t">If it asks you to sign in</b><p>The first push may open your browser or show a VS Code pop-up to approve access to GitHub. Approve it. If your assistant's push hangs or fails with an authentication error, push it yourself: click <b>Source Control</b> on the left bar, then <b>Sync Changes</b> or <b>Publish Branch</b>. That uses the GitHub sign-in from Part 1.</p></div>
 
       <h3>Step 2 · Put it online</h3>
       <div class="cols2">
@@ -947,6 +1068,9 @@ Never put API keys in the copy. Then tell me which GitHub settings to change (Se
       <span class="num">Reference</span>
       <h2>Words you'll see</h2>
       <dl class="glossary">
+        <dt>VS Code</dt><dd>A free app from Microsoft for working on code. You build your site inside it.</dd>
+        <dt>Extension</dt><dd>An add-on for VS Code. Your coding assistant is installed as one.</dd>
+        <dt>Command Palette</dt><dd>VS Code's search box for every command: Cmd+Shift+P on a Mac, Ctrl+Shift+P on Windows.</dd>
         <dt>Terminal</dt><dd>A text window where you type commands to your computer. VS Code has one at the bottom.</dd>
         <dt>Repository (repo)</dt><dd>A project folder whose history Git keeps track of.</dd>
         <dt>Git and GitHub</dt><dd>Git tracks changes on your laptop; GitHub keeps a copy online.</dd>
@@ -994,14 +1118,23 @@ Never put API keys in the copy. Then tell me which GitHub settings to change (Se
   });
 
   /* Assistant tabs (remembered in this browser) */
-  const tabs = [...document.querySelectorAll(".tabs button")];
+  const tabs = [...document.querySelectorAll(".as-tabs button")];
   const show = (name) => {
     tabs.forEach((t) => t.setAttribute("aria-selected", t.dataset.tab === name));
-    document.querySelectorAll(".tabpanel").forEach((p) => (p.hidden = p.dataset.panel !== name));
+    document.querySelectorAll("[data-panel]").forEach((p) => (p.hidden = p.dataset.panel !== name));
     try { localStorage.setItem("guide-assistant", name); } catch {}
   };
   tabs.forEach((t) => t.addEventListener("click", () => show(t.dataset.tab)));
   try { const s = localStorage.getItem("guide-assistant"); if (s) show(s); } catch {}
+
+  /* Mac / Windows tabs, starting on the visitor's system */
+  const osTabs = [...document.querySelectorAll(".os-tabs button")];
+  const showOs = (os) => {
+    osTabs.forEach((t) => t.setAttribute("aria-selected", t.dataset.os === os));
+    document.querySelectorAll("[data-ospanel]").forEach((p) => (p.hidden = p.dataset.ospanel !== os));
+  };
+  osTabs.forEach((t) => t.addEventListener("click", () => showOs(t.dataset.os)));
+  if (/Win/i.test(navigator.userAgent)) showOs("win");
 
   /* Progress (saved in this browser) */
   const boxes = [...document.querySelectorAll(".done-check input")];
